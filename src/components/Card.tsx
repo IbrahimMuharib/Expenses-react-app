@@ -7,7 +7,7 @@ function Card({
   children?: ReactNode;
   className?: string;
 }) {
-  const classes = `card ${className}`;
+  const classes = className ? `card ${className}` : "card";
   return <div className={classes}>{children}</div>;
 }
 export default Card;
