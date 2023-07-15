@@ -1,7 +1,7 @@
 import "./Expenses.css";
-import { Expense } from "../ExpenseItem/Expense";
+import { Expense } from "../Expense";
 import ExpenseItem from "../ExpenseItem/ExpenseItem";
-import Card from "../Card";
+import Card from "../../UI/Card";
 function Expenses({ expenses }: { expenses: Expense[] }): JSX.Element | null {
   return (
     <Card className="expenses">

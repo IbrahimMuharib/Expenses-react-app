@@ -1,8 +1,8 @@
-import { Expense, RawExpense } from "./components/ExpenseItem/Expense.ts";
+import { Expense, RawExpense } from "./components/ExpensesList/Expense.ts";
 import expensesData from "./components/expensesData.json";
-import Expenses from "./components/Expenses/Expenses";
+import Expenses from "./components/ExpensesList/Expenses/Expenses";
 import "./App.css";
-import Card from "./components/Card";
+import Card from "./components/UI/Card";
 function App(): JSX.Element | null {
   let expensesList: Expense[] = parseJsonData(expensesData);
   return (
