@@ -1,13 +1,15 @@
-import { Expense, RawExpense } from "./components/Expense.ts";
+import { Expense, RawExpense } from "./components/ExpenseItem/Expense.ts";
 import expensesData from "./components/expensesData.json";
-import Expenses from "./components/Expenses.tsx";
+import Expenses from "./components/Expenses/Expenses.tsx";
+import "./App.css";
+import Card from "./components/Card.tsx";
 function App(): JSX.Element | null {
   let expensesList: Expense[] = parseJsonData(expensesData);
   return (
     <div>
-      <div className="text-3xl">
-        <h2>Expenses List!</h2>
-      </div>
+      <Card className="expenses_header">
+        <h1>Expenses List!</h1>
+      </Card>
       <Expenses expenses={expensesList} />
     </div>
   );

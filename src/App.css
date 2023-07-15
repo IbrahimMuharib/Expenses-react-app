@@ -1,0 +1,10 @@
+.expenses_header {
+    padding: 0rem;
+    background-color: rgba(134, 110, 171, 0.315);
+    margin: 2rem auto;
+    width: 100rem;
+    max-width: 95%;
+    text-align: center;
+    font-size: 1.5rem;
+    color: aliceblue;
+  }

@@ -1,13 +1,14 @@
 import "./Expenses.css";
-import { Expense } from "./Expense";
-import ExpenseItem from "./ExpenseItem";
+import { Expense } from "../ExpenseItem/Expense";
+import ExpenseItem from "../ExpenseItem/ExpenseItem";
+import Card from "../Card";
 function Expenses({ expenses }: { expenses: Expense[] }): JSX.Element | null {
   return (
-    <div className="expenses">
+    <Card className="expenses">
       {expenses.map((expense, i) => (
         <ExpenseItem expense={expense} />
       ))}
-    </div>
+    </Card>
   );
 }
 
