@@ -1,11 +1,11 @@
-interface Expense {
+type Expense = {
   id: string;
   title: string;
   amount: number;
   date: Date;
 }
 
-interface RawExpense {
+type RawExpense = {
   id: string;
   title: string;
   amount: number;
