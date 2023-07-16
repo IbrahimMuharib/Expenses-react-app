@@ -3,12 +3,13 @@ import expensesData from "./components/expensesData.json";
 import Expenses from "./components/ExpensesList/Expenses/Expenses";
 import "./App.css";
 import Card from "./components/UI/Card";
+import NewExpense from "./components/CreateExpenses/NewExpense/NewExpense.tsx";
 function App(): JSX.Element | null {
   let expensesList: Expense[] = parseJsonData(expensesData);
   return (
     <div>
       <Card className="expenses_header">
-        <h1>Expenses List!</h1>
+        <NewExpense></NewExpense>
       </Card>
       <Expenses expenses={expensesList} />
     </div>
