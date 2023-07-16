@@ -1,14 +1,14 @@
 type Expense = {
-  id: string;
+  id:string,
   title: string;
   amount: number;
   date: Date;
 }
 
 type RawExpense = {
-  id: string;
+  id:string,
   title: string;
-  amount: number;
+  amount: string;
   date: string;
 }
 

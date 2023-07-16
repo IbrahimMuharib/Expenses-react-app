@@ -1,28 +1,44 @@
 import { Expense, RawExpense } from "./components/ExpensesList/Expense.ts";
-import expensesData from "./components/expensesData.json";
 import Expenses from "./components/ExpensesList/Expenses/Expenses";
 import "./App.css";
 import Card from "./components/UI/Card";
 import NewExpense from "./components/CreateExpenses/NewExpense/NewExpense.tsx";
+import {parseJsonData, getLocalStorageData} from "./utils/parser.tsx";
+import { useState } from 'react';
+
 function App(): JSX.Element | null {
-  let expensesList: Expense[] = parseJsonData(expensesData);
+
+  function addExpenseHander(rawExpense:RawExpense){
+    let rawExpensesList : RawExpense[] = getLocalStorageData()
+    rawExpensesList.push(rawExpense)
+    localStorage.setItem('Expenses', JSON.stringify(rawExpensesList));
+    const expensesList:Expense[] = parseJsonData(rawExpensesList)
+    setExpensesList(expensesList)
+  }
+
+  function changeTitleHandler(titleInfo:any){
+    let rawExpensesList : RawExpense[] = getLocalStorageData()
+    const findIndex = rawExpensesList.find(rawExpense => {
+      return rawExpense.id === titleInfo.id;
+     });
+     if (findIndex !== undefined) {
+      findIndex.title = titleInfo.enteredTitle;
+     }
+    localStorage.setItem('Expenses', JSON.stringify(rawExpensesList));
+    const expensesList:Expense[] = parseJsonData(rawExpensesList)
+    setExpensesList(expensesList)
+  }
+
+  let rawExpensesList : RawExpense[] = getLocalStorageData()
+  const [expensesList, setExpensesList] = useState<Expense[]>(parseJsonData(rawExpensesList))
   return (
     <div>
       <Card className="expenses_header">
-        <NewExpense></NewExpense>
+        <NewExpense onAddExpense={addExpenseHander}/>
       </Card>
-      <Expenses expenses={expensesList} />
+      <Expenses onchangeTitle= {changeTitleHandler} expenses={expensesList} />
     </div>
   );
 }
 
-function parseJsonData(expensesData: RawExpense[]): Expense[] {
-  let expenses: Expense[] = expensesData.map(
-    (expense: RawExpense, i: number) => ({
-      ...expense,
-      date: new Date(expense.date),
-    })
-  );
-  return expenses;
-}
 export default App;
