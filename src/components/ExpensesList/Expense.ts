@@ -12,4 +12,9 @@ type RawExpense = {
   date: string;
 }
 
-export {Expense, RawExpense}
+type TitleChangeInfo = {
+  enteredTitle: string;
+  id:string,
+}
+
+export {Expense, RawExpense, TitleChangeInfo}

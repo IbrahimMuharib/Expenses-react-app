@@ -1,4 +1,4 @@
-import { Expense, RawExpense } from "./components/ExpensesList/Expense.ts";
+import { Expense, RawExpense, TitleChangeInfo } from "./components/ExpensesList/Expense.ts";
 import Expenses from "./components/ExpensesList/Expenses/Expenses";
 import "./App.css";
 import Card from "./components/UI/Card";
@@ -16,13 +16,13 @@ function App(): JSX.Element | null {
     setExpensesList(expensesList)
   }
 
-  function changeTitleHandler(titleInfo:any){
+  function changeTitleHandler(titleChangeInfo:TitleChangeInfo){
     let rawExpensesList : RawExpense[] = getLocalStorageData()
     const findIndex = rawExpensesList.find(rawExpense => {
-      return rawExpense.id === titleInfo.id;
+      return rawExpense.id === titleChangeInfo.id;
      });
      if (findIndex !== undefined) {
-      findIndex.title = titleInfo.enteredTitle;
+      findIndex.title = titleChangeInfo.enteredTitle;
      }
     localStorage.setItem('Expenses', JSON.stringify(rawExpensesList));
     const expensesList:Expense[] = parseJsonData(rawExpensesList)

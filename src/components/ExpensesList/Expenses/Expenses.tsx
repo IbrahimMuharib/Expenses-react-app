@@ -1,11 +1,11 @@
 import "./Expenses.css";
-import { Expense } from "../Expense";
+import { Expense, TitleChangeInfo } from "../Expense";
 import ExpenseItem from "../ExpenseItem/ExpenseItem";
 import Card from "../../UI/Card";
-function Expenses({ expenses, onchangeTitle }: { expenses: Expense[], onchangeTitle:any }): JSX.Element | null {
+function Expenses({ expenses, onchangeTitle }: { expenses: Expense[], onchangeTitle:Function }): JSX.Element | null {
 
-  function saveNewTitle(titleInfo:any){
-    onchangeTitle(titleInfo)
+  function saveNewTitle(titleChangeInfo:TitleChangeInfo){
+    onchangeTitle(titleChangeInfo)
   }
   return (
     <Card className="expenses">
