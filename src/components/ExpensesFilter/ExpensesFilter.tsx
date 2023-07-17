@@ -1,9 +1,10 @@
 import './ExpensesFilter.css';
 import Card from '../UI/Card';
 
-const ExpensesFilter = ({onFilterExpensesByYear}:{onFilterExpensesByYear:Function}) => {
+const ExpensesFilter = ({onFilterExpensesByYear, filteredYear, setFilteredYear}:{onFilterExpensesByYear:Function, filteredYear:string, setFilteredYear:Function}) => {
 
     function filterYearHandler(event:React.ChangeEvent<HTMLSelectElement>){
+        setFilteredYear(event.target.value)
         onFilterExpensesByYear(event.target.value)
 
     }
@@ -11,7 +12,7 @@ const ExpensesFilter = ({onFilterExpensesByYear}:{onFilterExpensesByYear:Functio
     <Card className='expenses-filter'>
       <div className='expenses-filter__control'>
         <label>Filter by year</label>
-        <select defaultValue={"All"} onChange={filterYearHandler}>
+        <select value={filteredYear} onChange={filterYearHandler}>
         <option value='All'>All</option>
           <option value='2023'>2023</option>
           <option value='2022'>2022</option>

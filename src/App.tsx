@@ -14,6 +14,7 @@ function App(): JSX.Element | null {
     localStorage.setItem('Expenses', JSON.stringify(rawExpensesList));
     const newExpensesList:Expense[] = parseJsonData(rawExpensesList)
     setExpensesList(newExpensesList)
+    setFilteredYear('All')
   }
 
   function changeTitleHandler(titleChangeInfo:TitleChangeInfo){
@@ -45,12 +46,13 @@ function App(): JSX.Element | null {
 
   let rawExpensesList : RawExpense[] = getLocalStorageData()
   const [expensesList, setExpensesList] = useState<Expense[]>(parseJsonData(rawExpensesList))
+  const [filteredYear, setFilteredYear] = useState<string>('All')
   return (
     <div>
       <Card className="expenses_header">
         <NewExpense onAddExpense={addExpenseHander}/>
       </Card>
-      <Expenses onchangeTitle= {changeTitleHandler} onFilterExpensesByYear = {filterYear} expenses={expensesList} />
+      <Expenses onchangeTitle= {changeTitleHandler} onFilterExpensesByYear = {filterYear} expenses={expensesList} filteredYear={filteredYear} setFilteredYear ={setFilteredYear}/>
     </div>
   );
 }
