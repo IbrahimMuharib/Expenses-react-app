@@ -12,8 +12,8 @@ function App(): JSX.Element | null {
     let rawExpensesList : RawExpense[] = getLocalStorageData()
     rawExpensesList.push(rawExpense)
     localStorage.setItem('Expenses', JSON.stringify(rawExpensesList));
-    const expensesList:Expense[] = parseJsonData(rawExpensesList)
-    setExpensesList(expensesList)
+    const newExpensesList:Expense[] = parseJsonData(rawExpensesList)
+    setExpensesList(newExpensesList)
   }
 
   function changeTitleHandler(titleChangeInfo:TitleChangeInfo){
@@ -25,8 +25,22 @@ function App(): JSX.Element | null {
       findIndex.title = titleChangeInfo.enteredTitle;
      }
     localStorage.setItem('Expenses', JSON.stringify(rawExpensesList));
-    const expensesList:Expense[] = parseJsonData(rawExpensesList)
-    setExpensesList(expensesList)
+    const newExpensesList:Expense[] = parseJsonData(rawExpensesList)
+    setExpensesList(newExpensesList)
+  }
+
+  function filterYear(year:string){
+    let rawExpensesList : RawExpense[] = getLocalStorageData()
+    let newExpensesList:Expense[] = parseJsonData(rawExpensesList)
+    if (year === "All"){
+      setExpensesList(newExpensesList)
+      return
+    }
+    newExpensesList = newExpensesList.filter((item)=>{
+      console.log(item.date.getFullYear().toString())
+      return item.date.getFullYear().toString() === year;
+    })
+    setExpensesList(newExpensesList)    
   }
 
   let rawExpensesList : RawExpense[] = getLocalStorageData()
@@ -36,7 +50,7 @@ function App(): JSX.Element | null {
       <Card className="expenses_header">
         <NewExpense onAddExpense={addExpenseHander}/>
       </Card>
-      <Expenses onchangeTitle= {changeTitleHandler} expenses={expensesList} />
+      <Expenses onchangeTitle= {changeTitleHandler} onFilterExpensesByYear = {filterYear} expenses={expensesList} />
     </div>
   );
 }
