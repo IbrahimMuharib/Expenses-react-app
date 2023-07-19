@@ -43,7 +43,6 @@ function App(): JSX.Element | null {
       return;
     }
     newExpensesList = newExpensesList.filter((item) => {
-      console.log(item.date.getFullYear().toString());
       return item.date.getFullYear().toString() === year;
     });
     setExpensesList(newExpensesList);
