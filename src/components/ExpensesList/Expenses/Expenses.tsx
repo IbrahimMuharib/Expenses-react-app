@@ -8,13 +8,11 @@ function Expenses({
   onchangeTitle,
   onFilterExpensesByYear,
   filteredYear,
-  setFilteredYear
 }: {
   expenses: Expense[];
   onchangeTitle: Function;
   onFilterExpensesByYear: Function;
   filteredYear: string;
-  setFilteredYear:Function
 }): JSX.Element | null {
   function saveNewTitle(titleChangeInfo: TitleChangeInfo) {
     onchangeTitle(titleChangeInfo);
@@ -26,7 +24,7 @@ function Expenses({
 
   return (
     <Card className="expenses">
-      <ExpensesFilter onFilterExpensesByYear={filterYear} filteredYear = {filteredYear} setFilteredYear = {setFilteredYear}/>
+      <ExpensesFilter onFilterExpensesByYear={filterYear} filteredYear = {filteredYear}/>
       {expenses.map((expense, i) => (
         <ExpenseItem onSaveNewTitle={saveNewTitle} expense={expense} />
       ))}
