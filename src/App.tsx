@@ -9,6 +9,8 @@ import Card from "./components/UI/Card";
 import NewExpense from "./components/CreateExpenses/NewExpense/NewExpense.tsx";
 import { parseJsonData, getLocalStorageData } from "./utils/parser.tsx";
 import { useState } from "react";
+import ChartBar from "./components/Chart/ChartBar.tsx";
+import ExpensesChart from "./components/Chart/ExpensesChart.tsx";
 
 function App(): JSX.Element | null {
   //TODO move to data layer
@@ -33,7 +35,7 @@ function App(): JSX.Element | null {
     const newExpensesList: Expense[] = parseJsonData(rawExpensesList);
     setExpensesList(newExpensesList);
   }
-  
+  //TODO move to data layer?
   function filterYear(year: string) {
     let rawExpensesList: RawExpense[] = getLocalStorageData()
     let newExpensesList: Expense[] = parseJsonData(rawExpensesList);
@@ -47,16 +49,20 @@ function App(): JSX.Element | null {
     });
     setExpensesList(newExpensesList);
   }
-
+  //TODO move to data layer
   let rawExpensesList: RawExpense[] = getLocalStorageData();
   const [expensesList, setExpensesList] = useState<Expense[]>(
     parseJsonData(rawExpensesList)
   );
+  
   const [filteredYear, setFilteredYear] = useState<string>("All");
   return (
     <div>
       <Card className="expenses_header">
         <NewExpense onAddExpense={addExpenseHandler} />
+      </Card>
+      <Card>
+      <ExpensesChart expenses={expensesList}/>
       </Card>
       <Expenses
         onchangeTitle={changeTitleHandler}

@@ -22,12 +22,24 @@ function Expenses({
     onFilterExpensesByYear(year);
   }
 
+  let expensesContent:any = <p>No expenses found.</p>
+
+  if (expenses.length > 0){
+    expensesContent = expenses.map((expense, index) => (
+      <ExpenseItem
+        key={expense.id}
+        onSaveNewTitle={saveNewTitle}
+        expense={expense}
+      />
+    ))
+  }
   return (
     <Card className="expenses">
-      <ExpensesFilter onFilterExpensesByYear={filterYear} filteredYear = {filteredYear}/>
-      {expenses.map((expense, i) => (
-        <ExpenseItem onSaveNewTitle={saveNewTitle} expense={expense} />
-      ))}
+      <ExpensesFilter
+        onFilterExpensesByYear={filterYear}
+        filteredYear={filteredYear}
+      />
+      {expensesContent}
     </Card>
   );
 }

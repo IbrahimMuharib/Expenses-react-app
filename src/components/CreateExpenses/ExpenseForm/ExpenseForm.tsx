@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./ExpenseForm.css";
 import {RawExpense } from "../../ExpensesList/Expense";
 
-export default function ExpenseForm({onSaveExpenseDate}:{onSaveExpenseDate:Function}) {
+export default function ExpenseForm({onSaveExpenseDate, hideForm}:{onSaveExpenseDate:Function, hideForm:any}) {
   const [userInput, setUserInput] = useState<RawExpense>({
     id:"-1",
     title: "",
@@ -81,6 +81,7 @@ export default function ExpenseForm({onSaveExpenseDate}:{onSaveExpenseDate:Funct
       </div>
       <div className="new-expense__actions">
         <button type="submit"> Add Expense </button>
+        <button onClick = {hideForm}> Cancel </button>
       </div>
     </form>
   );
