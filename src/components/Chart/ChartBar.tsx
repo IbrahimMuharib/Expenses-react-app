@@ -14,7 +14,6 @@ function ChartBar({
   if (maxValue > 0) {
     barPercent = `${Math.round((value / maxValue) * 100)}%`;
   }
-  console.log(barPercent);
 
   return (
     <div className="chart-bar">
